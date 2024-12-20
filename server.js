@@ -1,7 +1,8 @@
 import express from "express";
 import youtubeStream from "./youtubeStream.js";
 import twitchStream from "./twitchStream.js";
-// import youtubeStream from "./demoj.js";
+
+const PORT = 3000;
 
 const app = express();
 
@@ -12,8 +13,6 @@ app.get("/*", async (_, res) => {
 	const youtubeStreamPlayer = await youtubeStream(youtubeChannelID);
 	const twitchStreamPlayer = await twitchStream(twitchChannelID);
 
-	console.log(secondStream);
-
 	res.send(
 		`${youtubeStreamPlayer}
             <br /><br /><br />
@@ -22,6 +21,6 @@ app.get("/*", async (_, res) => {
 	);
 });
 
-app.listen(3000, () => {
-	console.log("App is running on http://localhost:3000");
+app.listen(PORT, () => {
+	console.log(`App is running on http://localhost:${PORT}`);
 });
